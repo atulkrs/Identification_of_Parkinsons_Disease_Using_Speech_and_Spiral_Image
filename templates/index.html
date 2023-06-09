@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block head %}
+  {{ super() }}
+  <hr>
+  <div class="dropdown text-center">
+   
+    <select onchange="layout()" class="btn btn-secondary dropdown-toggle"b id="Choice" aria-labelledby="dropdownMenuButton">
+          <a><option class="dropdown-item" value="0">Select option</option></a>
+          <option class="dropdown-item" value="1">Test With Audio File</option>
+          <option class="dropdown-item" value="2">Test With Image File</option>
+    </select>
+   
+   <!-- Select File Section Start -->
+  
+ 
+  
+ <div class=" text-center" id="uploadAudio" style="display:none;"> 
+  <p>
+      <!-- <label for="formFileLg" class="form-label">Large file input example</label> -->
+      
+        <form action = "/TestAudio" method = "POST" 
+         enctype = "multipart/form-data">
+         <input type = "file" name = "file" />
+         <input type = "submit" value="Test"/>
+      </form>  
+      </p>
+  </div>
+<!-- Select File Section End -->
+<div class=" text-center" id="uploadImage" style="display:none;"> 
+  <p>
+      <!-- <label for="formFileLg" class="form-label">Large file input example</label> -->
+      
+        <form action = "/TestImage" method = "POST" 
+         enctype = "multipart/form-data">
+         <input type = "file" name = "file" />
+         <input type = "submit" value="Test"/>
+      </form>  
+      </p>
+  </div>
+  </div>
+    <br><br>
+    <h4>Test Result is :{{res}}</h4>
+    <br><br><br><br><br><br><br>
+    <script>
+        function layout() {
+         var c=document.getElementById("Choice");
+         var upload=document.getElementById("uploadAudio");
+         var record=document.getElementById("uploadImage");
+         if(c.value==1)
+         {
+          upload.style.display='block';
+          record.style.display='none';
+         }
+         else if(c.value==2)
+         {
+          upload.style.display='none';
+          record.style.display='block';
+         }
+         else
+         {
+          upload.style.display='none'
+          record.style.display='none'
+         }
+          
+        }
+        
+    </script>
+    <!-- dropdown-menu close -->
+{% endblock %}
+<!-- dropdown-menu -->
